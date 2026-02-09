@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b45309;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #92400e;
+}
+
+/* Selection color */
+::selection {
+  background-color: #b45309;
+  color: white;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Focus states for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #b45309;
+  outline-offset: 2px;
+}
+
+/* Subtle luxury motion */
+@keyframes bb-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bb-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.bb-fade-up {
+  animation: bb-fade-up 700ms ease both;
+}
+
+.bb-float {
+  animation: bb-float 6s ease-in-out infinite;
+}
+
+/* Premium “glass” surface helper (used in hero/cards) */
+.bb-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px);
+}
+
+/* Soft luxury shadow */
+.bb-soft-shadow {
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.35) inset,
+    0 10px 30px rgba(12, 10, 9, 0.10);
+}
+
+/* Luxury section backdrop helpers */
+.bb-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.bb-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(800px 420px at 20% 20%, rgba(245, 158, 11, 0.10), transparent 60%),
+    radial-gradient(900px 520px at 80% 30%, rgba(12, 10, 9, 0.06), transparent 60%),
+    linear-gradient(to bottom, rgba(255,255,255,0.0), rgba(255,255,255,0.0));
+  opacity: 1;
+}
+
+.bb-grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(12,10,9,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(12,10,9,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.22;
+  mask-image: radial-gradient(70% 55% at 50% 30%, #000 50%, transparent 100%);
+}
+
+.bb-noise-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255,255,255,0.12), transparent 45%),
+    radial-gradient(circle at 80% 40%, rgba(245, 158, 11, 0.09), transparent 50%),
+    radial-gradient(circle at 30% 80%, rgba(12,10,9,0.08), transparent 55%);
+  opacity: 0.55;
+}
+
+/* Premium buttons */
+.bb-btn-gold {
+  background: linear-gradient(135deg, #b45309, #f59e0b);
+}
+
+.bb-btn-gold:hover {
+  filter: brightness(1.04);
+}
+
+/* On-scroll reveal */
+.bb-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 800ms ease, transform 800ms ease;
+  transition-delay: var(--bb-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.bb-reveal.bb-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
